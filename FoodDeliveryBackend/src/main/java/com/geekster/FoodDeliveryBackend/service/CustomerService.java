@@ -2,6 +2,7 @@ package com.geekster.FoodDeliveryBackend.service;
 
 import com.geekster.FoodDeliveryBackend.model.AuthenticationToken;
 import com.geekster.FoodDeliveryBackend.model.Customer;
+import com.geekster.FoodDeliveryBackend.model.Restaurant;
 import com.geekster.FoodDeliveryBackend.model.dto.SignInInput;
 import com.geekster.FoodDeliveryBackend.model.dto.SignUpOutput;
 import com.geekster.FoodDeliveryBackend.repository.ICustomerRepo;
@@ -9,6 +10,8 @@ import com.geekster.FoodDeliveryBackend.service.utility.emailUtility.EmailHandle
 import com.geekster.FoodDeliveryBackend.service.utility.hashingUtility.PasswordEncrypter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CustomerService {
@@ -101,5 +104,9 @@ public class CustomerService {
         authService.removeToken(token);
         return "Customer signed out successfully!!";
 
+    }
+
+    public List<Restaurant> getAllRestaurants() {
+        return customerRepo.findAll();
     }
 }

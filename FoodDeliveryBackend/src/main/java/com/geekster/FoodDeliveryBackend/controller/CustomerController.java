@@ -1,16 +1,17 @@
 package com.geekster.FoodDeliveryBackend.controller;
 
 import com.geekster.FoodDeliveryBackend.model.Customer;
+import com.geekster.FoodDeliveryBackend.model.Restaurant;
 import com.geekster.FoodDeliveryBackend.model.dto.SignInInput;
 import com.geekster.FoodDeliveryBackend.model.dto.SignUpOutput;
 import com.geekster.FoodDeliveryBackend.service.AuthenticationService;
 import com.geekster.FoodDeliveryBackend.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @Validated
 @RestController
 public class CustomerController {
@@ -41,6 +42,13 @@ public class CustomerController {
         else{
             return "non-authenticated customer's are not allowed to perform this operation!! ";
         }
+    }
+
+
+    //Get all restaurants
+    @GetMapping("/restaurant")
+    public List<Restaurant> getAllRestaurants(){
+        return customerService.getAllRestaurants();
     }
 
 
